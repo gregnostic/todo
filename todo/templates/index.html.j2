@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>To Do</title>
+    <link rel="stylesheet" href="{{ css_path }}">
+</head>
+
+<body>
+    <h1>To Do</h1>
+    <form id="form" method="POST">
+        {%- if error %}
+        <p id="error">❗️ {{ error }}</p>
+        {%- endif %}
+        {%- if not items %}
+        <p id="start">Start your list by adding an item!</p>
+        {%- else %}
+        <ol>
+            {%- for item in items %}
+            <li>
+                {%- if form_values and form_values.edit and form_values.edit == item.id|string %}
+                <div class="controls">
+                    <button id="save" name="save" value="{{ item.id }}">💾</button>
+                </div>
+                <div class="description">
+                    <input type="text" name="description" value="{{ item.description|e }}" autofocus="autofocus">
+                </div>
+                {%- else %}
+                <div class="controls">
+                    {%- if not item.is_completed %}
+                    <button name="complete" value="{{ item.id }}">✓</button>
+                    <button name="edit" value="{{ item.id }}">✏️</button>
+                    {%- endif %}
+                    <button name="remove" value="{{ item.id }}">🗑️</button>
+                </div>
+                <div class="description{% if item.is_completed %} completed{% endif %}">
+                    {{ item.description|e }}
+                </div>
+                {%- endif %}
+            </li>
+            {%- endfor %}
+        </ol>
+        {%- endif %}
+        <div class="new">
+            <input type="text" name="description" autofocus="autofocus">
+            <input id="add" type="submit" name="create" value="➕">
+        </div>
+    </form>
+</body>
+
+</html>

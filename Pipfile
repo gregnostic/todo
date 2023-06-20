@@ -5,7 +5,8 @@ name = "pypi"
 
 [packages]
 flask = "*"
-psycopg2 = "*"
+gunicorn = "*"
+psycopg2-binary = "*"
 
 [dev-packages]
 
