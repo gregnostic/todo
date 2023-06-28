@@ -18,11 +18,11 @@ def load_config():
 def db_connect():
     if 'db' not in g:
         g.db = psycopg2.connect(
-            host="localhost",
-            port=5432,
-            dbname="todo",
-            user="todo",
-            password="todo",
+            host=app.config["DATABASE"]["hostname"],
+            port=app.config["DATABASE"]["port"],
+            dbname=app.config["DATABASE"]["database"],
+            user=app.config["DATABASE"]["username"],
+            password=app.config["DATABASE"]["password"],
         )
 
 @app.teardown_request

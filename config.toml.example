@@ -3,8 +3,8 @@
 # environment. Remove `.example` from the filename.
 
 [DATABASE]
-host = "localhost"
+hostname = "localhost"
 port = 5432
 database = "todo"
 username = "todo"
-passord = "todo"
+password = "todo"
